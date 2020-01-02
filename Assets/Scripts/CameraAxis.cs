@@ -14,8 +14,8 @@ public class CameraAxis : MonoBehaviour
 
     private void Update()
     {
-		this.rotate(10.0f);
-		//this.flick();
+		//this.rotate(10.0f);
+		this.flick();
     }
 
 
@@ -25,26 +25,27 @@ public class CameraAxis : MonoBehaviour
 		(
 			m_target.position,
 			Vector3.up,
-			rotateSpeed * Time.deltaTime
+			rotateSpeed / 2
 		);
 	}
 
 	private void flick()
 	{
-		if (Input.GetKey(KeyCode.Mouse0))
+		if (Input.GetKeyDown(KeyCode.Mouse0))
 		{
 			touchStartPos = new Vector3(Input.mousePosition.x,
 				Input.mousePosition.y,
 				Input.mousePosition.z);
 
-			touchEndPos = new Vector3(Input.mousePosition.x,
-	Input.mousePosition.y,
-	Input.mousePosition.z);
-			getDirection();
+
 		}
 
-		if (Input.GetKeyUp(KeyCode.Mouse0))
+		if (Input.GetKey(KeyCode.Mouse0))
 		{
+			touchEndPos = new Vector3(Input.mousePosition.x,
+				Input.mousePosition.y,
+				Input.mousePosition.z);
+			getDirection();
 
 		}
 	}
@@ -52,41 +53,25 @@ public class CameraAxis : MonoBehaviour
 	private void getDirection()
 	{
 		float directionX = touchEndPos.x - touchStartPos.x;
-		float directionY = touchEndPos.y - touchStartPos.y;
-		//xがｙより絶対値が大きい時。
-		if (Mathf.Abs(directionY) < Mathf.Abs(directionX))
-		{
-			if (30 < directionX)
-			{
-				//右向きにフリック
-				Direction = "right";
 
-			}
-			if (-30 > directionX)
-			{
-				//左向きにフリック
-				Direction = "left";
-			}
-			//yがxより絶対値が大きい時。
-		}
-		else if (Mathf.Abs(directionX) < Mathf.Abs(directionY))
+		if (0 < directionX)
 		{
-			if (30 < directionY)
-			{
-				//上向きにフリック
-				Direction = "up";
-			}
-			if (-30 > directionY)
-			{
-				//下向きのフリック
-				Direction = "down";
-			}
+			//右向きにフリック
+			Direction = "right";
+			
+
 		}
-		else
+		else if (0 > directionX)
 		{
-			//タッチを検出
+			//左向きにフリック
+			Direction = "left";
+			
+		}
+        else
+        {
 			Direction = "touch";
 		}
+
 		switch (Direction)
 		{
 			case "up":
@@ -100,11 +85,24 @@ public class CameraAxis : MonoBehaviour
 			case "right":
 				//右フリックされた時の処理
 				this.rotate(directionX);
+				touchStartPos = new Vector3(Input.mousePosition.x,
+	Input.mousePosition.y,
+	Input.mousePosition.z);
+				touchEndPos = new Vector3(Input.mousePosition.x,
+					Input.mousePosition.y,
+					Input.mousePosition.z);
 				break;
 
 			case "left":
 				//左フリックされた時の処理
 				this.rotate(directionX);
+				touchStartPos = new Vector3(Input.mousePosition.x,
+	Input.mousePosition.y,
+	Input.mousePosition.z);
+
+				touchEndPos = new Vector3(Input.mousePosition.x,
+					Input.mousePosition.y,
+					Input.mousePosition.z);
 				break;
 
 			case "touch":
