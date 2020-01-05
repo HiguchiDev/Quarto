@@ -91,3 +91,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a89cafce3e77c4c9aa41ea73b03e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  height: 2
+  PIECE_COLOR: 1
+  dent: 0
+  PIECE_FORM: 1
+  prefabResorcesName: 

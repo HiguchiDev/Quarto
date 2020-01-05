@@ -86,8 +86,8 @@ public class CameraAxis : MonoBehaviour
 				//右フリックされた時の処理
 				this.rotate(directionX);
 				touchStartPos = new Vector3(Input.mousePosition.x,
-	Input.mousePosition.y,
-	Input.mousePosition.z);
+					Input.mousePosition.y,
+					Input.mousePosition.z);
 				touchEndPos = new Vector3(Input.mousePosition.x,
 					Input.mousePosition.y,
 					Input.mousePosition.z);
@@ -97,8 +97,8 @@ public class CameraAxis : MonoBehaviour
 				//左フリックされた時の処理
 				this.rotate(directionX);
 				touchStartPos = new Vector3(Input.mousePosition.x,
-	Input.mousePosition.y,
-	Input.mousePosition.z);
+					Input.mousePosition.y,
+					Input.mousePosition.z);
 
 				touchEndPos = new Vector3(Input.mousePosition.x,
 					Input.mousePosition.y,
